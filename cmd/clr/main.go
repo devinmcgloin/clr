@@ -8,6 +8,13 @@ import (
 )
 
 func main() {
+	cfg := clr.Config{
+		GenericColorsPath:  "./clr/main-colors.toml",
+		SpecificColorsPath: "./clr/colors.toml",
+	}
+
+	clr.Configure(cfg)
+
 	var hex string
 	flag.StringVar(&hex, "hex", "#000000", "Color represented in Hex")
 	flag.Parse()

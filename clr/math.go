@@ -25,7 +25,7 @@ func max(args ...float64) float64 {
 func pow(x uint8, y int) int {
 	r := int(x)
 	i := 1
-	for ; i < y; i += 1 {
+	for ; i < y; i++ {
 		r *= int(x)
 	}
 	return r

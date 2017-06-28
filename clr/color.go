@@ -9,16 +9,20 @@ import (
 var genericColors colors
 var specificColors colors
 
-func init() {
-
-	if _, err := toml.DecodeFile("./clr/colors.toml", &specificColors); err != nil {
+func Configure(c Config) {
+	if _, err := toml.DecodeFile(c.SpecificColorsPath, &specificColors); err != nil {
 		log.Panic(err)
 	}
 
-	if _, err := toml.DecodeFile("./clr/main-colors.toml", &genericColors); err != nil {
+	if _, err := toml.DecodeFile(c.GenericColorsPath, &genericColors); err != nil {
 		log.Panic(err)
 	}
 
+}
+
+type Config struct {
+	SpecificColorsPath string
+	GenericColorsPath  string
 }
 
 type Color interface {
