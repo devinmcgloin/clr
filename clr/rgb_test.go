@@ -78,7 +78,7 @@ func BenchmarkGenericColor(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		for _, c := range colors {
-			c.GenericColorSpace()
+			c.Shade()
 		}
 	}
 }
@@ -92,7 +92,7 @@ func BenchmarkSpecificColor(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		for _, c := range colors {
-			c.SpecificColorSpace()
+			c.ColorName()
 		}
 	}
 }
