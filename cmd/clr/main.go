@@ -32,6 +32,6 @@ func main() {
 	fmt.Print("CMYK: ")
 	fmt.Println(color.CMYK())
 	fmt.Println("HEX:", color.Hex())
-	fmt.Println("Generic Color:", color.GenericColorSpace())
-	fmt.Println("Specific Color:", color.SpecificColorSpace())
+	fmt.Println("Generic Color:", color.Shade())
+	fmt.Println("Specific Color:", color.ColorName())
 }

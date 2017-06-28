@@ -33,8 +33,8 @@ type Color interface {
 	XYZ() (float64, float64, float64)
 	CIELAB() (l, a, b float64)
 	Hex() string
-	GenericColorSpace() ColorSpace
-	SpecificColorSpace() ColorSpace
+	Shade() ColorSpace
+	ColorName() ColorSpace
 	Distance(c Color) float64
 }
 

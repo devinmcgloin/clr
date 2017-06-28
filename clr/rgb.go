@@ -128,11 +128,11 @@ func (rgb RGB) colorName(colors colors) ColorSpace {
 	}
 	return ColorSpace(colors.Color[indx].Name)
 }
-func (rgb RGB) GenericColorSpace() ColorSpace {
+func (rgb RGB) Shade() ColorSpace {
 	return rgb.colorName(genericColors)
 }
 
-func (rgb RGB) SpecificColorSpace() ColorSpace {
+func (rgb RGB) ColorName() ColorSpace {
 	return rgb.colorName(specificColors)
 }
 
