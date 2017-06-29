@@ -111,21 +111,21 @@ func (rgb RGB) Hex() string {
 }
 
 func (rgb RGB) ColorName(colors ColorTable) ColorSpace {
-	var indx int
+	var minHex string
 	minDist := math.MaxFloat64
 	var hex = rgb.Hex()
 
-	for i, c := range colors.Iterate() {
+	for _, c := range colors.Iterate() {
 		if c.Hex() == hex {
-			return colors.Lookup(i)
+			return colors.Lookup(c.Hex())
 		}
 		dist := rgb.Distance(c)
 		if dist < minDist {
-			indx = i
+			minHex = c.Hex()
 			minDist = dist
 		}
 	}
-	return colors.Lookup(indx)
+	return colors.Lookup(minHex)
 }
 
 func (rgb RGB) Distance(c Color) float64 {

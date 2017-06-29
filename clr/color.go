@@ -19,7 +19,7 @@ type Color interface {
 
 type ColorTable interface {
 	Iterate() []Color
-	Lookup(id int) ColorSpace
+	Lookup(hexCode string) ColorSpace
 }
 
 type ColorSpace string
