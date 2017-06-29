@@ -94,11 +94,6 @@ func (hsv HSV) CIELAB() (float64, float64, float64) {
 func (hsv HSV) Hex() string {
 	return hsv.toRGB().Hex()
 }
-
-func (hsv HSV) Shade() ColorSpace {
-	return hsv.toRGB().Shade()
-}
-
-func (hsv HSV) ColorName() ColorSpace {
-	return hsv.toRGB().ColorName()
+func (hsv HSV) ColorName(colors ColorTable) ColorSpace {
+	return hsv.toRGB().ColorName(colors)
 }

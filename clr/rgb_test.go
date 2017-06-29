@@ -4,14 +4,6 @@ import (
 	"testing"
 )
 
-func init() {
-	cfg := Config{
-		GenericColorsPath:  "./main-colors.toml",
-		SpecificColorsPath: "./colors.toml",
-	}
-	Configure(cfg)
-}
-
 func TestHSL(t *testing.T) {
 	tables := []struct {
 		rgb RGB
@@ -68,7 +60,7 @@ func TestHSV(t *testing.T) {
 	}
 }
 
-func BenchmarkGenericColor(b *testing.B) {
+func BenchmarkColorDistance(b *testing.B) {
 	colors := []RGB{
 		RGB{R: 78, G: 91, B: 112},
 		RGB{R: 165, G: 23, B: 139},
@@ -77,22 +69,10 @@ func BenchmarkGenericColor(b *testing.B) {
 		RGB{R: 132, G: 135, B: 132},
 	}
 	for i := 0; i < b.N; i++ {
-		for _, c := range colors {
-			c.Shade()
-		}
-	}
-}
-func BenchmarkSpecificColor(b *testing.B) {
-	colors := []RGB{
-		RGB{R: 78, G: 91, B: 112},
-		RGB{R: 165, G: 23, B: 139},
-		RGB{R: 221, G: 132, B: 90},
-		RGB{R: 89, G: 1, B: 55},
-		RGB{R: 132, G: 135, B: 132},
-	}
-	for i := 0; i < b.N; i++ {
-		for _, c := range colors {
-			c.ColorName()
+		for _, c1 := range colors {
+			for _, c2 := range colors {
+				c1.Distance(c2)
+			}
 		}
 	}
 }

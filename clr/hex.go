@@ -55,12 +55,8 @@ func (c Hex) CIELAB() (l, a, b float64) {
 	return c.getRGB().CIELAB()
 }
 
-func (c Hex) Shade() ColorSpace {
-	return c.getRGB().Shade()
-}
-
-func (c Hex) ColorName() ColorSpace {
-	return c.getRGB().ColorName()
+func (c Hex) ColorName(colors ColorTable) ColorSpace {
+	return c.getRGB().ColorName(colors)
 }
 
 func (hex Hex) Distance(c Color) float64 {

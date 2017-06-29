@@ -4,16 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/sprioc/clr/clr"
+	"github.com/devinmcgloin/clr/clr"
 )
 
 func main() {
-	cfg := clr.Config{
-		GenericColorsPath:  "./clr/main-colors.toml",
-		SpecificColorsPath: "./clr/colors.toml",
-	}
-
-	clr.Configure(cfg)
 
 	var hex string
 	flag.StringVar(&hex, "hex", "#000000", "Color represented in Hex")
@@ -32,6 +26,4 @@ func main() {
 	fmt.Print("CMYK: ")
 	fmt.Println(color.CMYK())
 	fmt.Println("HEX:", color.Hex())
-	fmt.Println("Generic Color:", color.Shade())
-	fmt.Println("Specific Color:", color.ColorName())
 }

@@ -110,30 +110,22 @@ func (rgb RGB) Hex() string {
 	return fmt.Sprintf("%02X%02X%02X", rgb.R, rgb.G, rgb.B)
 }
 
-func (rgb RGB) colorName(colors colors) ColorSpace {
+func (rgb RGB) ColorName(colors ColorTable) ColorSpace {
 	var indx int
 	minDist := math.MaxFloat64
 	var hex = rgb.Hex()
 
-	for i, c := range colors.Color {
-		if c.Hex == hex {
-			return ColorSpace(c.Name)
+	for i, c := range colors.Iterate() {
+		if c.Hex() == hex {
+			return colors.Lookup(i)
 		}
-		cHex := Hex{Code: c.Hex}
-		dist := rgb.Distance(cHex)
+		dist := rgb.Distance(c)
 		if dist < minDist {
 			indx = i
 			minDist = dist
 		}
 	}
-	return ColorSpace(colors.Color[indx].Name)
-}
-func (rgb RGB) Shade() ColorSpace {
-	return rgb.colorName(genericColors)
-}
-
-func (rgb RGB) ColorName() ColorSpace {
-	return rgb.colorName(specificColors)
+	return colors.Lookup(indx)
 }
 
 func (rgb RGB) Distance(c Color) float64 {
