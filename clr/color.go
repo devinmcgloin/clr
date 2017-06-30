@@ -1,10 +1,5 @@
 package clr
 
-type Config struct {
-	SpecificColorsPath string
-	GenericColorsPath  string
-}
-
 type Color interface {
 	RGB() (uint8, uint8, uint8)
 	HSL() (uint16, uint8, uint8)
