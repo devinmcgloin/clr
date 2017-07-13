@@ -25,5 +25,8 @@ func main() {
 	fmt.Println(color.HSV())
 	fmt.Print("CMYK: ")
 	fmt.Println(color.CMYK())
+	fmt.Print("CIELAB: ")
+	fmt.Println(color.CIELAB())
+
 	fmt.Println("HEX:", color.Hex())
 }
