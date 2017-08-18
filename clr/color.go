@@ -10,6 +10,7 @@ type Color interface {
 	Hex() string
 	ColorName(colors ColorTable) ColorSpace
 	Distance(c Color) float64
+	RGBA() (r, g, b, a uint8)
 }
 
 type ColorTable interface {

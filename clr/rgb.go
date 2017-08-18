@@ -12,6 +12,9 @@ type RGB struct {
 func (c RGB) RGB() (r, g, b uint8) {
 	return c.R, c.G, c.B
 }
+func (c RGB) RGBA() (r, g, b, a uint8) {
+	return c.R, c.G, c.B, 1
+}
 
 // HSL converts RGB values into HSL ones in which
 // H = 0 - 360, S = 0 - 100 and V = 0 - 100

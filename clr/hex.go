@@ -31,6 +31,10 @@ func (c Hex) RGB() (uint8, uint8, uint8) {
 	return uint8(r), uint8(g), uint8(b)
 }
 
+func (c Hex) RGBA() (r, g, b, a uint8) {
+	return c.getRGB().RGBA()
+}
+
 func (c Hex) HSL() (uint16, uint8, uint8) {
 	return c.getRGB().HSL()
 }

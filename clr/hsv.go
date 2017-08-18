@@ -71,6 +71,10 @@ func (hsv HSV) RGB() (uint8, uint8, uint8) {
 	return rgb.R, rgb.G, rgb.B
 }
 
+func (hsv HSV) RGBA() (r, g, b, a uint8) {
+	return hsv.toRGB().RGBA()
+}
+
 func (hsv HSV) HSL() (uint16, uint8, uint8) {
 	return hsv.toRGB().HSL()
 }
