@@ -3,9 +3,9 @@ package clr
 import "math"
 
 type HSV struct {
-	H uint16
-	S uint8
-	V uint8
+	H uint16 `json:"h"`
+	S uint8  `json:"s"`
+	V uint8  `json:"v"`
 }
 
 func (hsv HSV) toRGB() RGB {

@@ -6,7 +6,7 @@ import (
 )
 
 type Hex struct {
-	Code string
+	Code string `json:"code"`
 }
 
 func (c Hex) getRGB() RGB {

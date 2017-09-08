@@ -6,7 +6,9 @@ import (
 )
 
 type RGB struct {
-	R, G, B uint8
+	R uint8 `json:"r"`
+	G uint8 `json:"g"`
+	B uint8 `json:"b"`
 }
 
 func (c RGB) RGB() (r, g, b uint8) {
