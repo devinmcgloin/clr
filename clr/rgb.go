@@ -11,6 +11,10 @@ type RGB struct {
 	B uint8 `json:"b"`
 }
 
+func (rgb RGB) Valid() bool {
+	return rgb.R <= 255 && rgb.G <= 255 && rgb.B <= 255
+}
+
 func (c RGB) RGB() (r, g, b uint8) {
 	return c.R, c.G, c.B
 }

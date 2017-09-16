@@ -14,6 +14,23 @@ func (c Hex) getRGB() RGB {
 	return RGB{R: r, G: g, B: b}
 }
 
+func (c Hex) Valid() bool {
+	var err error
+	_, err = strconv.ParseUint(c.Code[0:2], 16, 8)
+	if err != nil {
+		return false
+	}
+	_, err = strconv.ParseUint(c.Code[2:4], 16, 8)
+	if err != nil {
+		return false
+	}
+	_, err = strconv.ParseUint(c.Code[4:6], 16, 8)
+	if err != nil {
+		return false
+	}
+	return true
+}
+
 func (c Hex) RGB() (uint8, uint8, uint8) {
 	r, err := strconv.ParseUint(c.Code[0:2], 16, 8)
 	if err != nil {

@@ -8,6 +8,10 @@ type HSV struct {
 	V uint8  `json:"v"`
 }
 
+func (hsv HSV) Valid() bool {
+	return hsv.H <= 360 && hsv.S <= 100 && hsv.V <= 100
+}
+
 func (hsv HSV) toRGB() RGB {
 	rgb := RGB{}
 	h := float64(hsv.H) / 260.0

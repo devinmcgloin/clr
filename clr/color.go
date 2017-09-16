@@ -1,6 +1,7 @@
 package clr
 
 type Color interface {
+	Valid() bool
 	RGB() (uint8, uint8, uint8)
 	HSL() (uint16, uint8, uint8)
 	HSV() (uint16, uint8, uint8)
