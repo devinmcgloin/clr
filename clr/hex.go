@@ -5,15 +5,21 @@ import (
 	"strconv"
 )
 
+// Hex represents the Hex format
 type Hex struct {
 	Code string `json:"code"`
 }
 
+// getRGB provides the hatch into all the defined RGB Methods.
+// This allows for lossless conversion to all other supported
+// colorspaces.
 func (c Hex) getRGB() RGB {
 	r, g, b := c.RGB()
 	return RGB{R: r, G: g, B: b}
 }
 
+// Valid checks if a given hex code is valid. Currently only
+// 6 digit hex codes are supported.
 func (c Hex) Valid() bool {
 	var err error
 	_, err = strconv.ParseUint(c.Code[0:2], 16, 8)
@@ -25,12 +31,10 @@ func (c Hex) Valid() bool {
 		return false
 	}
 	_, err = strconv.ParseUint(c.Code[4:6], 16, 8)
-	if err != nil {
-		return false
-	}
-	return true
+	return err == nil
 }
 
+// RGB converts to rgb.
 func (c Hex) RGB() (uint8, uint8, uint8) {
 	r, err := strconv.ParseUint(c.Code[0:2], 16, 8)
 	if err != nil {
@@ -48,38 +52,47 @@ func (c Hex) RGB() (uint8, uint8, uint8) {
 	return uint8(r), uint8(g), uint8(b)
 }
 
+// RGBA is an alias of RGB.RGBA
 func (c Hex) RGBA() (r, g, b, a uint8) {
 	return c.getRGB().RGBA()
 }
 
+// HSL is an alias of RGB.HSL
 func (c Hex) HSL() (uint16, uint8, uint8) {
 	return c.getRGB().HSL()
 }
 
+// HSV is an alias of RGB.HSV
 func (c Hex) HSV() (uint16, uint8, uint8) {
 	return c.getRGB().HSV()
 }
 
+// CMYK is an alias of RGB.CMYK
 func (c Hex) CMYK() (uint8, uint8, uint8, uint8) {
 	return c.getRGB().CMYK()
 }
 
+// Hex returns the hexcode in the Hex struct.
 func (c Hex) Hex() string {
 	return c.Code
 }
 
+// XYZ is an alias of RGB.XYZ
 func (c Hex) XYZ() (x, y, z float64) {
 	return c.getRGB().XYZ()
 }
 
+// CIELAB is an alias of RGB.CIELAB
 func (c Hex) CIELAB() (l, a, b float64) {
 	return c.getRGB().CIELAB()
 }
 
+// ColorName is an alias of RGB.ColorName
 func (c Hex) ColorName(colors ColorTable) ColorSpace {
 	return c.getRGB().ColorName(colors)
 }
 
-func (hex Hex) Distance(c Color) float64 {
-	return hex.getRGB().Distance(c)
+// Distance is an alias of RGB.Distance
+func (c Hex) Distance(otherC Color) float64 {
+	return c.getRGB().Distance(otherC)
 }

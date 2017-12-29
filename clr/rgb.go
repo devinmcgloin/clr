@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// RGB Represents a point in the RGB Colorspace.
 type RGB struct {
 	R uint8 `json:"r"`
 	G uint8 `json:"g"`
@@ -15,20 +16,20 @@ func (rgb RGB) Valid() bool {
 	return rgb.R <= 255 && rgb.G <= 255 && rgb.B <= 255
 }
 
-func (c RGB) RGB() (r, g, b uint8) {
-	return c.R, c.G, c.B
+func (rgb RGB) RGB() (uint8, uint8, uint8) {
+	return rgb.R, rgb.G, rgb.B
 }
-func (c RGB) RGBA() (r, g, b, a uint8) {
-	return c.R, c.G, c.B, 1
+func (rgb RGB) RGBA() (uint8, uint8, uint8, uint8) {
+	return rgb.R, rgb.G, rgb.B, 1
 }
 
 // HSL converts RGB values into HSL ones in which
 // H = 0 - 360, S = 0 - 100 and V = 0 - 100
-func (c RGB) HSL() (uint16, uint8, uint8) {
+func (rgb RGB) HSL() (uint16, uint8, uint8) {
 	var h, s, l float64
-	R := float64(c.R) / 255
-	G := float64(c.G) / 255
-	B := float64(c.B) / 255
+	R := float64(rgb.R) / 255
+	G := float64(rgb.G) / 255
+	B := float64(rgb.B) / 255
 
 	minVal := min(R, G, B)
 	maxVal := max(R, G, B)
@@ -66,11 +67,11 @@ func (c RGB) HSL() (uint16, uint8, uint8) {
 
 // HSV converts RGB values into HSV ones in which
 // H = 0 - 360, S = 0 - 100 and V = 0 - 100
-func (c RGB) HSV() (uint16, uint8, uint8) {
+func (rgb RGB) HSV() (uint16, uint8, uint8) {
 	var h, s, v float64
-	R := float64(c.R) / 255
-	G := float64(c.G) / 255
-	B := float64(c.B) / 255
+	R := float64(rgb.R) / 255
+	G := float64(rgb.G) / 255
+	B := float64(rgb.B) / 255
 
 	minVal := min(R, G, B)
 	maxVal := max(R, G, B)
