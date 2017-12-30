@@ -17,61 +17,46 @@ func (hsv HSV) Valid() bool {
 
 // toRGB allows HSV to have access to all RGB Methods.
 func (hsv HSV) toRGB() RGB {
-	rgb := RGB{}
-	h := float64(hsv.H) / 260.0
-	s := float64(hsv.S) / 100.0
-	v := float64(hsv.V) / 100.0
+	var r, g, b float64
+	h := float64(hsv.H) / 360
+	s := float64(hsv.S) / 100
+	v := float64(hsv.V) / 100
 
-	if s == 0 {
-		rgb.R = uint8(v * 255)
-		rgb.G = uint8(v * 255)
-		rgb.B = uint8(v * 255)
-	} else {
-		h /= 6.0
+	i := math.Floor(h * 6)
+	f := h*6 - i
+	p := v * (1 - s)
+	q := v * (1 - f*s)
+	t := v * (1 - (1-f)*s)
 
-		if h == 6 {
-			h = 0
-		}
+	switch int(i) % 6 {
+	case 0:
+		r = v
+		g = t
+		b = p
+	case 1:
+		r = q
+		g = v
+		b = p
 
-		i := math.Floor(h)
-
-		a := v * (1 - s)
-		b := v * (1 - s*(h-i))
-		c := v * (1 - s*(1-(h-i)))
-
-		var red, green, blue float64
-
-		switch i {
-		case 0:
-			red = v
-			green = c
-			blue = a
-		case 1:
-			red = b
-			green = v
-			blue = a
-		case 2:
-			red = a
-			green = v
-			blue = c
-		case 3:
-			red = a
-			green = b
-			blue = v
-		case 4:
-			red = c
-			green = a
-			blue = b
-		default:
-			red = v
-			green = a
-			blue = b
-		}
-		rgb.R = uint8(red * 255)
-		rgb.G = uint8(green * 255)
-		rgb.B = uint8(blue * 255)
+	case 2:
+		r = p
+		g = v
+		b = t
+	case 3:
+		r = p
+		g = q
+		b = v
+	case 4:
+		r = t
+		g = p
+		b = v
+	case 5:
+		r = v
+		g = p
+		b = q
 	}
-	return rgb
+
+	return RGB{R: uint8(r * 255), G: uint8(g * 255), B: uint8(b * 255)}
 }
 
 // RGB Converts HSV to RGB using toRGB
