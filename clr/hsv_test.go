@@ -6,6 +6,10 @@ func TestConversionToRGB(t *testing.T) {
 	table := map[HSV]RGB{
 		HSV{13, 81, 47}:  RGB{119, 43, 23},
 		HSV{159, 51, 84}: RGB{104, 214, 175},
+		HSV{222, 92, 87}: RGB{17, 78, 221},
+		HSV{222, 74, 47}: RGB{31, 57, 119},
+		HSV{138, 74, 47}: RGB{31, 119, 57},
+		HSV{207, 79, 84}: RGB{44, 138, 214},
 	}
 
 	for hsv, rgb := range table {
