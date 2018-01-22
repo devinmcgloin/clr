@@ -33,8 +33,10 @@ clr is based on two primitives `Color` and `ColorTable`. `Color` has three
 backing types currently, Hex, RGB, and HSV. You can add your own types by
 implementing the `Color` interface.
 
+
 ```golang
 type Color interface {
+	Valid() bool
 	RGB() (uint8, uint8, uint8)
 	HSL() (uint16, uint8, uint8)
 	HSV() (uint16, uint8, uint8)
@@ -44,10 +46,17 @@ type Color interface {
 	Hex() string
 	ColorName(colors ColorTable) ColorSpace
 	Distance(c Color) float64
+	RGBA() (r, g, b, a uint8)
 }
+```
 
+clr also contains functionality for finding the closest color name to a given
+color. This requires an instance of ColorTable, which provides the possible
+color matches. clr matches to the closest color in CIELAB.
+
+```golang
 type ColorTable interface {
 	Iterate() []Color
 	Lookup(hexCode string) ColorSpace
-    }
+}
 ```
