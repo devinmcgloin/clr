@@ -15,7 +15,7 @@ type Color interface {
 	RGBA() (r, g, b, a uint8)
 }
 
-// ColorTable allows colors to be mapped to names, this must be fufilled to the library as there is no built in ColorTable.
+// ColorTable allows colors to be mapped to names, this must be fulfilled to the library as there is no built in ColorTable.
 type ColorTable interface {
 	Iterate() []Color
 	Lookup(hexCode string) ColorSpace

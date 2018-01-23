@@ -146,7 +146,7 @@ func (rgb RGB) ColorName(colors ColorTable) ColorSpace {
 }
 
 // Distance calculates the distance between colors in CIELAB using
-// simple Euclidian distance.
+// simple Euclidean distance.
 func (rgb RGB) Distance(c Color) float64 {
 	l1, a1, b1 := rgb.CIELAB()
 	l2, a2, b2 := c.CIELAB()
