@@ -1,4 +1,5 @@
 # clr
+[![Build Status](https://travis-ci.org/devinmcgloin/clr.svg?branch=master)](https://travis-ci.org/devinmcgloin/clr)
 
 clr is a go library to manage different color spaces, convert between them and
 compare colors.
