@@ -7,9 +7,9 @@ import (
 func TestHSL(t *testing.T) {
 	tables := []struct {
 		rgb RGB
-		h   uint16
-		s   uint8
-		l   uint8
+		h   int
+		s   int
+		l   int
 	}{
 		{RGB{R: 78, G: 91, B: 112}, 217, 17, 37},
 		{RGB{R: 165, G: 23, B: 139}, 310, 75, 36},
@@ -35,9 +35,9 @@ func TestHSL(t *testing.T) {
 func TestHSV(t *testing.T) {
 	tables := []struct {
 		rgb RGB
-		h   uint16
-		s   uint8
-		v   uint8
+		h   int
+		s   int
+		v   int
 	}{
 		{RGB{R: 78, G: 91, B: 112}, 217, 30, 43},
 		{RGB{R: 165, G: 23, B: 139}, 310, 86, 64},

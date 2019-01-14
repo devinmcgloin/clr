@@ -4,9 +4,9 @@ import "math"
 
 // HSV represents the HSV Colorspace.
 type HSV struct {
-	H uint16 `json:"h"`
-	S uint8  `json:"s"`
-	V uint8  `json:"v"`
+	H int `json:"h"`
+	S int `json:"s"`
+	V int `json:"v"`
 }
 
 // Valid confirms that the HSV Type is a valid point
@@ -56,32 +56,32 @@ func (hsv HSV) toRGB() RGB {
 		b = q
 	}
 
-	return RGB{R: uint8(r * 255), G: uint8(g * 255), B: uint8(b * 255)}
+	return RGB{R: int(r * 255), G: int(g * 255), B: int(b * 255)}
 }
 
 // RGB Converts HSV to RGB using toRGB
-func (hsv HSV) RGB() (uint8, uint8, uint8) {
+func (hsv HSV) RGB() (int, int, int) {
 	rgb := hsv.toRGB()
 	return rgb.R, rgb.G, rgb.B
 }
 
 // RGBA is an alias of RGB.RGBA
-func (hsv HSV) RGBA() (r, g, b, a uint8) {
+func (hsv HSV) RGBA() (r, g, b, a int) {
 	return hsv.toRGB().RGBA()
 }
 
 // HSL is an alias of RGB.HSL
-func (hsv HSV) HSL() (uint16, uint8, uint8) {
+func (hsv HSV) HSL() (int, int, int) {
 	return hsv.toRGB().HSL()
 }
 
 // HSV is an alias of RGB.HSV
-func (hsv HSV) HSV() (uint16, uint8, uint8) {
+func (hsv HSV) HSV() (int, int, int) {
 	return hsv.H, hsv.S, hsv.V
 }
 
 // CMYK is an alias of RGB.CMYK
-func (hsv HSV) CMYK() (uint8, uint8, uint8, uint8) {
+func (hsv HSV) CMYK() (int, int, int, int) {
 	return hsv.toRGB().CMYK()
 }
 

@@ -35,7 +35,7 @@ func (c Hex) Valid() bool {
 }
 
 // RGB converts to rgb.
-func (c Hex) RGB() (uint8, uint8, uint8) {
+func (c Hex) RGB() (int, int, int) {
 	r, err := strconv.ParseUint(c.Code[0:2], 16, 8)
 	if err != nil {
 		log.Fatal(err)
@@ -49,26 +49,26 @@ func (c Hex) RGB() (uint8, uint8, uint8) {
 		log.Fatal(err)
 	}
 
-	return uint8(r), uint8(g), uint8(b)
+	return int(r), int(g), int(b)
 }
 
 // RGBA is an alias of RGB.RGBA
-func (c Hex) RGBA() (r, g, b, a uint8) {
+func (c Hex) RGBA() (r, g, b, a int) {
 	return c.getRGB().RGBA()
 }
 
 // HSL is an alias of RGB.HSL
-func (c Hex) HSL() (uint16, uint8, uint8) {
+func (c Hex) HSL() (int, int, int) {
 	return c.getRGB().HSL()
 }
 
 // HSV is an alias of RGB.HSV
-func (c Hex) HSV() (uint16, uint8, uint8) {
+func (c Hex) HSV() (int, int, int) {
 	return c.getRGB().HSV()
 }
 
 // CMYK is an alias of RGB.CMYK
-func (c Hex) CMYK() (uint8, uint8, uint8, uint8) {
+func (c Hex) CMYK() (int, int, int, int) {
 	return c.getRGB().CMYK()
 }
 

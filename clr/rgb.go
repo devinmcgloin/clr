@@ -7,9 +7,9 @@ import (
 
 // RGB Represents a point in the RGB Colorspace.
 type RGB struct {
-	R uint8 `json:"r"`
-	G uint8 `json:"g"`
-	B uint8 `json:"b"`
+	R int `json:"r"`
+	G int `json:"g"`
+	B int `json:"b"`
 }
 
 // Valid checks if the RGB instance is a valid point in the RGB ColorSpace.
@@ -18,18 +18,18 @@ func (rgb RGB) Valid() bool {
 }
 
 // RGB returns the RGB components for the given point.
-func (rgb RGB) RGB() (uint8, uint8, uint8) {
+func (rgb RGB) RGB() (int, int, int) {
 	return rgb.R, rgb.G, rgb.B
 }
 
 // RGBA is similar to RGB but adds an alpha channel.
-func (rgb RGB) RGBA() (uint8, uint8, uint8, uint8) {
+func (rgb RGB) RGBA() (int, int, int, int) {
 	return rgb.R, rgb.G, rgb.B, 1
 }
 
 // HSL converts RGB values into HSL ones in which
 // H = 0 - 360, S = 0 - 100 and V = 0 - 100
-func (rgb RGB) HSL() (uint16, uint8, uint8) {
+func (rgb RGB) HSL() (int, int, int) {
 	var h, s, l float64
 	R := float64(rgb.R) / 255
 	G := float64(rgb.G) / 255
@@ -66,12 +66,12 @@ func (rgb RGB) HSL() (uint16, uint8, uint8) {
 		}
 		h /= 6
 	}
-	return uint16(h * 360), uint8(s * 100), uint8(l * 100)
+	return int(h * 360), int(s * 100), int(l * 100)
 }
 
 // HSV converts RGB values into HSV ones in which
 // H = 0 - 360, S = 0 - 100 and V = 0 - 100
-func (rgb RGB) HSV() (uint16, uint8, uint8) {
+func (rgb RGB) HSV() (int, int, int) {
 	var h, s, v float64
 	R := float64(rgb.R) / 255
 	G := float64(rgb.G) / 255
@@ -103,11 +103,11 @@ func (rgb RGB) HSV() (uint16, uint8, uint8) {
 		}
 		h /= 6
 	}
-	return uint16(h * 360), uint8(s * 100), uint8(v * 100)
+	return int(h * 360), int(s * 100), int(v * 100)
 }
 
 // CMYK converts RGB colorspace into CMYK
-func (rgb RGB) CMYK() (uint8, uint8, uint8, uint8) {
+func (rgb RGB) CMYK() (int, int, int, int) {
 	r := float64(rgb.R) / 255.0
 	g := float64(rgb.G) / 255.0
 	b := float64(rgb.B) / 255.0
@@ -118,7 +118,7 @@ func (rgb RGB) CMYK() (uint8, uint8, uint8, uint8) {
 	dc = (1 - r - dk) / (1 - dk)
 	dm = (1 - g - dk) / (1 - dk)
 	dy = (1 - b - dk) / (1 - dk)
-	return uint8(dc * 100), uint8(dm * 100), uint8(dy * 100), uint8(dk * 100)
+	return int(dc * 100), int(dm * 100), int(dy * 100), int(dk * 100)
 }
 
 // Hex formats rgb in Hex
