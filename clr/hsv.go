@@ -104,3 +104,14 @@ func (hsv HSV) Hex() string {
 func (hsv HSV) ColorName(colors ColorTable) ColorSpace {
 	return hsv.toRGB().ColorName(colors)
 }
+
+// Distance calculates the distance between colors in CIELAB using
+// simple Euclidean distance.
+func (hsv HSV) Distance(c Color) float64 {
+	l1, a1, b1 := hsv.CIELAB()
+	l2, a2, b2 := c.CIELAB()
+	return math.Sqrt(
+		math.Pow(l1-l2, 2) +
+			math.Pow(a1-a2, 2) +
+			math.Pow(b1-b2, 2))
+}
