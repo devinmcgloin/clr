@@ -60,6 +60,35 @@ func TestHSV(t *testing.T) {
 	}
 }
 
+func TestColorInterface(t *testing.T) {
+	tables := []struct {
+		rgb RGB
+		r   uint32
+		g   uint32
+		b   uint32
+		a   uint32
+	}{
+		{RGB{R: 255, G: 255, B: 255}, 65535, 65535, 65535, 65535},
+		{RGB{R: 0, G: 0, B: 0}, 0, 0, 0, 65535},
+	}
+
+	for _, table := range tables {
+		r, g, b, a := table.rgb.RGBA()
+		if r != table.r {
+			t.Errorf("R of %v was incorrect, got: %d wanted: %d\n", table.rgb, r, table.r)
+		}
+		if g != table.g {
+			t.Errorf("G of %v was incorrect, got: %d wanted: %d\n", table.rgb, g, table.g)
+		}
+		if b != table.b {
+			t.Errorf("B of %v was incorrect, got: %d wanted: %d\n", table.rgb, b, table.b)
+		}
+		if a != table.a {
+			t.Errorf("A of %v was incorrect, got: %d wanted: %d\n", table.rgb, a, table.a)
+		}
+	}
+}
+
 func BenchmarkColorDistance(b *testing.B) {
 	colors := []RGB{
 		RGB{R: 78, G: 91, B: 112},

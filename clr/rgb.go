@@ -22,9 +22,18 @@ func (rgb RGB) RGB() (int, int, int) {
 	return rgb.R, rgb.G, rgb.B
 }
 
-// RGBA is similar to RGB but adds an alpha channel.
-func (rgb RGB) RGBA() (uint32, uint32, uint32, uint32) {
-	return uint32(rgb.R), uint32(rgb.G), uint32(rgb.B), 1
+// RGBA is similar to RGB but adds an alpha channel. It conforms with the
+// color.Color interface, so values need to be upscaled accordingly.
+func (rgb RGB) RGBA() (r, g, b, a uint32) {
+	r = uint32(rgb.R)
+	r |= r << 8
+	g = uint32(rgb.G)
+	g |= g << 8
+	b = uint32(rgb.B)
+	b |= b << 8
+	a = 255
+	a |= a << 8
+	return
 }
 
 // HSL converts RGB values into HSL ones in which
