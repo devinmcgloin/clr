@@ -12,7 +12,7 @@ type Color interface {
 	Hex() string
 	ColorName(colors ColorTable) ColorSpace
 	Distance(c Color) float64
-	RGBA() (r, g, b, a int)
+	RGBA() (r, g, b, a uint32)
 }
 
 // ColorTable allows colors to be mapped to names, this must be fulfilled to the library as there is no built in ColorTable.

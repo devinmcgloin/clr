@@ -66,7 +66,7 @@ func (hsv HSV) RGB() (int, int, int) {
 }
 
 // RGBA is an alias of RGB.RGBA
-func (hsv HSV) RGBA() (r, g, b, a int) {
+func (hsv HSV) RGBA() (r, g, b, a uint32) {
 	return hsv.toRGB().RGBA()
 }
 

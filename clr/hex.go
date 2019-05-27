@@ -53,7 +53,7 @@ func (c Hex) RGB() (int, int, int) {
 }
 
 // RGBA is an alias of RGB.RGBA
-func (c Hex) RGBA() (r, g, b, a int) {
+func (c Hex) RGBA() (r, g, b, a uint32) {
 	return c.getRGB().RGBA()
 }
 
