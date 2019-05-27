@@ -1,4 +1,5 @@
 # clr
+
 [![Build Status](https://travis-ci.org/devinmcgloin/clr.svg?branch=master)](https://travis-ci.org/devinmcgloin/clr)
 
 clr is a go library to manage different color spaces, convert between them and
@@ -34,7 +35,6 @@ clr is based on two primitives `Color` and `ColorTable`. `Color` has three
 backing types currently, Hex, RGB, and HSV. You can add your own types by
 implementing the `Color` interface.
 
-
 ```golang
 type Color interface {
 	Valid() bool
@@ -47,7 +47,7 @@ type Color interface {
 	Hex() string
 	ColorName(colors ColorTable) ColorSpace
 	Distance(c Color) float64
-	RGBA() (r, g, b, a int)
+	RGBA() (r, g, b, a uint32)
 }
 ```
 
